@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const userRoutes = require("./routes/userRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 const connectDB = require("./config/db");
+const cookieParser = require("cookie-parser");
 
 dotenv.config();
 
@@ -11,6 +12,8 @@ const port = process.env.PORT || 5000;
 
 connectDB();
 const app = express();
+
+app.use(cookieParser());
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
